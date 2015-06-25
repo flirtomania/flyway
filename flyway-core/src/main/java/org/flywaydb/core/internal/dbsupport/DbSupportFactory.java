@@ -28,6 +28,7 @@ import org.flywaydb.core.internal.dbsupport.redshift.RedshiftDbSupport;
 import org.flywaydb.core.internal.dbsupport.solid.SolidDbSupport;
 import org.flywaydb.core.internal.dbsupport.sqlite.SQLiteDbSupport;
 import org.flywaydb.core.internal.dbsupport.sqlserver.SQLServerDbSupport;
+import org.flywaydb.core.internal.dbsupport.sqlserver.SqlServer80DbSupport;
 import org.flywaydb.core.internal.dbsupport.vertica.VerticaDbSupport;
 import org.flywaydb.core.internal.util.logging.Log;
 import org.flywaydb.core.internal.util.logging.LogFactory;
@@ -75,6 +76,9 @@ public class DbSupportFactory {
         if (databaseProductName.contains("HSQL Database Engine")) {
             // For regular Hsql and the Google Cloud SQL local default DB.
             return new HsqlDbSupport(connection);
+        }
+        if (databaseProductName.contains("Microsoft SQL Server 8.0")) {
+            return new SqlServer80DbSupport(connection);
         }
         if (databaseProductName.startsWith("Microsoft SQL Server")) {
             return new SQLServerDbSupport(connection);

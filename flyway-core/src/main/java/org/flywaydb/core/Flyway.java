@@ -31,6 +31,8 @@ import org.flywaydb.core.internal.command.DbValidate;
 import org.flywaydb.core.internal.dbsupport.DbSupport;
 import org.flywaydb.core.internal.dbsupport.DbSupportFactory;
 import org.flywaydb.core.internal.dbsupport.Schema;
+import org.flywaydb.core.internal.dbsupport.sqlserver.SQLServerDbSupport;
+import org.flywaydb.core.internal.dbsupport.sqlserver.SQLServerSchema;
 import org.flywaydb.core.internal.info.MigrationInfoServiceImpl;
 import org.flywaydb.core.internal.metadatatable.MetaDataTable;
 import org.flywaydb.core.internal.metadatatable.MetaDataTableImpl;
@@ -1046,6 +1048,7 @@ public class Flyway {
                 }
 
                 DbSupport dbSupportUserObjects = DbSupportFactory.createDbSupport(connectionUserObjects, false);
+
                 Schema originalSchemaUserObjects = dbSupportUserObjects.getCurrentSchema();
                 boolean schemaChange = !schemas[0].equals(originalSchemaUserObjects);
                 if (schemaChange) {

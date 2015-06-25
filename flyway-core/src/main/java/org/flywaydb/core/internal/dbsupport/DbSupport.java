@@ -71,6 +71,7 @@ public abstract class DbSupport {
      * @return The current schema for this connection.
      */
     public Schema getCurrentSchema() {
+
         try {
             String schemaName = doGetCurrentSchema();
             if (schemaName == null) {
